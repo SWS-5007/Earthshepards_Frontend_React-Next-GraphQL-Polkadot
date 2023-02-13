@@ -1,0 +1,51 @@
+@use "../../../styles/breakpoints" as *;
+@use "../../../styles/mixins" as *;
+
+.backgroundModal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 99;
+}
+
+.modalSelect {
+    position: absolute;
+    background-color: var(--white);
+    width: 90%;
+    height: auto;
+    padding: 20px;
+    top: 40px;
+    right: 20px;
+    border-radius: 10px;
+    z-index: 999;
+
+    @include breakpoint (ml) {
+        width: initial;
+    }
+
+
+
+}
+
+.connectPolkadotMnemonic {
+    text-align: center;
+    h3 {
+        font-size: 30px;
+        color: var(--japanese-laurel);
+    }
+}
+
+.connectOptions {
+   display: grid;
+   grid-template-columns: 1fr;
+   
+  
+    p {
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+        color: var(--white);
+        background-color: var(--japanese-laurel);
+    }
+}

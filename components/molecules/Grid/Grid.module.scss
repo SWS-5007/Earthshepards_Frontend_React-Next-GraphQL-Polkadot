@@ -1,0 +1,28 @@
+@use "../../../styles/breakpoints" as *;
+@use "../../../styles/mixins" as *;
+
+.grid {
+	display: grid;
+	gap:0 var(--grid-gap);
+
+	&.columns-12 {
+		grid-template-columns: repeat(6, 1fr);
+		@include breakpoint(tl) {
+			grid-template-columns: repeat(12, 1fr);
+		}
+
+		& > * {
+			grid-column: 1 / span 6;
+
+			@include breakpoint(tl) {
+				grid-column: 1 / span 12;
+			}
+		}
+	}
+}
+
+.centered {
+	@include breakpoint(t) {
+		align-items: center;
+	}
+}

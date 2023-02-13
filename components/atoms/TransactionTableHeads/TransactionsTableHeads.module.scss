@@ -1,0 +1,62 @@
+@use '../../../styles/breakpoints' as *;
+@use '../../../styles/mixins' as *;
+
+.transactionTableHeads {
+  margin-top: 20px;
+}
+
+.header {
+  display: flex;
+  gap: 50px;
+  border-bottom: 1px solid var(--white);
+
+  div {
+    text-align: center;
+
+    @include breakpoint(ts) {
+      width: 200px;
+    }
+
+    h2 {
+      font-weight: 600;
+      color: var(--black);
+      font-size: 13px;
+      font-family: var(--worksans-regular);
+      margin: 0;
+
+      @include breakpoint(ts) {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+.tableActive {
+  h2 {
+    font-family: var(--worksans-bold) !important;
+  }
+  &::after {
+    content: '';
+    display: block;
+    position: relative;
+    top: 5px;
+    border-bottom: 10px solid var(--black);
+    animation-name: tableHadersAnimation;
+    animation-duration: 500ms;
+  }
+}
+
+@keyframes tableHadersAnimation {
+  0% {
+    display: none;
+    scale: 0;
+  }
+  75% {
+    scale: 1.2;
+    rotate: 2deg;
+  }
+  100% {
+    scale: 1;
+    rotate: -2deg;
+  }
+}

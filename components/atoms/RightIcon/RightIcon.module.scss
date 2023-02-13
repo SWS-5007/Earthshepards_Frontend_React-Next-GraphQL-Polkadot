@@ -1,0 +1,19 @@
+@use '../../../styles/breakpoints' as *;
+@use '../../../styles/mixins' as *;
+
+
+.rightIcon {
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: 0px;
+    transform: translate(-50%, -50%);
+    img {
+        width: 35px;
+        height: 30px;
+    }
+    
+    @include breakpoint(tl) {
+        display: none;
+    }
+}

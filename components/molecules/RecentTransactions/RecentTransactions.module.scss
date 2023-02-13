@@ -1,0 +1,189 @@
+@use '../../../styles/breakpoints' as *;
+@use '../../../styles/mixins' as *;
+
+.title {
+  color: var(--white);
+  font-size: 20px;
+  font-family: var(--worksans-bold);
+  margin: 10px 0px 0px 0px;
+}
+
+.RecentTransactions {
+  table {
+    border-collapse: separate;
+    width: 100%;
+    table-layout: fixed;
+    border-spacing: 0 15px;
+
+    thead {
+      width: 100%;
+      display: table;
+
+      tr {
+        display: none;
+
+        th {
+          font-family: var(--worksans-bold);
+
+        }
+
+        @include breakpoint(ds) {
+          background-color: transparent;
+          display: contents;
+        }
+      }
+    }
+
+    tbody {
+      display: block;
+      overflow: auto;
+      height: 250px;
+
+      tr {
+        background-color: #f8f8f8;
+        border: 1px solid transparent;
+        border-radius: 20px;
+        padding: 6px;
+        margin-bottom: 20px;
+
+        display: flex;
+        justify-content: space-between;
+
+        @include breakpoint(ds) {
+          background-color: #f8f8f8;
+          border: 1px solid transparent;
+          border-radius: 50px;
+          padding: 6px;
+        }
+      }
+
+      th {
+        padding: 10px;
+        text-align: center;
+        font-size: 14px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      td {
+        display: grid;
+        text-align: right;
+        padding: 10px 20px 10px 20px;
+        font-size: 10px;
+
+        @include breakpoint(ml) {
+          font-size: 12px;
+        }
+
+        @include breakpoint(ts) {
+          font-size: 16px;
+        }
+
+        &:before {
+          content: attr(data-label);
+          color: var(--black);
+          text-align: left;
+          position: absolute;
+        }
+
+        @include breakpoint(ds) {
+          &:before {
+            content: none;
+          }
+
+          padding: 15px 15px 15px 20px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        &:nth-child(2),
+        &:nth-child(3),
+        &:nth-child(4),
+        &:nth-child(8),
+        &:nth-child(9) {
+          color: var(--gray);
+        }
+
+        &:first-child {
+          border-radius: 10px 0px 0px 10px;
+        }
+
+        &:last-child {
+          border-radius: 0px 10px 10px 0px;
+        }
+      }
+    }
+  }
+}
+
+.content{
+
+  overflow-x: scroll;
+  @include breakpoint(tl){
+    overflow: visible;
+  }
+
+}
+
+.RecentTransactionsHeader {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  // width: 100%;
+  min-width: 777px;
+
+  div {
+    text-align: center;
+    // font-size: 14px;
+    // letter-spacing: 2px;
+    font-family: var(--worksans-bold);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+}
+
+.RecentTransactionsBody {
+  margin-top: 10px;
+  min-width: 777px;
+  height: 400px;
+  overflow: visible;
+  @include breakpoint(tl){
+    overflow-y: scroll;
+  }
+
+}
+
+.RecentTransaction {
+  margin-top: 10px;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  width: 100%;
+  background-color: var(--white);
+
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:0;
+    @include breakpoint(tl){
+      padding: 10px;
+    }
+  }
+}
+
+.Hash,
+.From,
+.To,
+.Name {
+  color: var(--black);
+}
+
+.Block,
+.Age,
+.Type,
+.Value,
+.Timestamp {
+  color: var(--gray);
+}

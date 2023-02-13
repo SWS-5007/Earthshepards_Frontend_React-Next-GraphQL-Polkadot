@@ -1,0 +1,41 @@
+@use "../../../styles/breakpoints" as *;
+@use "../../../styles/mixins" as *;
+
+.button {
+    margin-top: 10px;
+    border-radius: 10px;
+    padding: 20px;
+    transition: all 150ms ease-in-out;
+    opacity: 0.8;
+
+    &:hover {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 14px;
+    }
+
+    p {
+        margin: 0;
+    }
+}
+
+.connect {
+    text-align: center;
+    background-color: var(--black)!important;
+    display: none;
+
+    h1 {
+        font-weight: 600;
+        color: var(--white)
+    }
+
+    border: 1px solid var(--white);
+
+    @include breakpoint(tl) {
+        display: block;
+    }
+}

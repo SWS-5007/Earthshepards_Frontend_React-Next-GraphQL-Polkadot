@@ -1,0 +1,66 @@
+@use "../../../styles/breakpoints" as *;
+@use "../../../styles/mixins" as *;
+
+.Text {
+    padding: 10px 13px;
+
+    @include breakpoint (ds) {
+        padding: 20px 40px;
+    }
+}
+
+.FirstTypeTextBlock {
+    border-radius: 15px;
+    background-color: var(--san-felix);
+
+    p {
+     font-size: 16px;
+     text-align: center;
+
+     @include breakpoint(tl) {
+        text-align: left;
+     }
+    }
+
+    h2 {
+        font-weight: 600;
+        font-size: 14px;
+        font-family: var(--worksans-bold);
+        text-align: center;
+
+        @include breakpoint(tl) {
+            font-size: 16px;
+            text-align: left;
+        }
+    }
+}
+
+.SecondTypeTextBlock {
+    border-radius: 15px;
+    background-color: var(--san-felix);
+    text-align: center;
+    
+    p {
+        font-size: 10px;
+        font-family: var(--worksans-bold);
+        margin: 0px 0px 10px 0px;
+
+        @include breakpoint (ds) {
+            font-size: 16px;
+            margin:0;
+        }
+    }
+    
+    h2 {
+        font-weight: 600;
+        font-size: 20px;
+        font-family: var(--worksans-extra-light);
+        margin: 5px 0px 5px 0px;
+        
+
+        @include breakpoint (ds) {
+            font-size: 40px;
+            margin: 10px 0px 5px 0px;
+        }
+    }
+}

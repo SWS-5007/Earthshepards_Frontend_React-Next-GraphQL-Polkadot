@@ -1,0 +1,185 @@
+@use '../../../styles/breakpoints' as *;
+@use '../../../styles/mixins' as *;
+
+.title {
+  color: var(--white);
+  font-size: 20px;
+  font-family: var(--worksans-bold);
+  margin: 10px 0px 0px 0px;
+}
+
+.transactionTable {
+  margin-top: 15px;
+  table {
+    border-collapse: separate;
+    width: 100%;
+    table-layout: fixed;
+    border-spacing: 0 15px;
+    display: none;
+
+    thead {
+      width: 100%;
+      display: table;
+      text-align: left;
+
+      tr {
+        background-color: transparent;
+        display: none;
+
+        th {
+          font-family: var(--worksans-bold);
+          font-size: 14px;
+
+          &:nth-child(1) {
+            width: 1%;
+          }
+
+          &:nth-child(2) {
+            width: 24%;
+          }
+
+          &:nth-child(7) {
+            width: 60%;
+          }
+
+          &:nth-child(2),
+          &:nth-child(4),
+          &:nth-child(5),
+          &:nth-child(6),
+          &:nth-child(7) {
+            visibility: hidden;
+          }
+        }
+
+        @include breakpoint(t) {
+          display: contents;
+        }
+      }
+    }
+
+    tbody {
+      display: block;
+      overflow: auto;
+      height: 450px;
+
+      tr {
+        background-color: #f8f8f8;
+        border: 1px solid transparent;
+        border-radius: 20px;
+        padding: 6px;
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      th {
+        padding: 10px;
+        text-align: center;
+        font-size: 14px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      td {
+        display: grid;
+        text-align: right;
+        padding: 5px 15px 5px 20px;
+        font-size: 10px;
+
+        @include breakpoint(ml) {
+          font-size: 12px;
+        }
+
+        @include breakpoint(ts) {
+          font-size: 16px;
+        }
+
+        &:before {
+          content: none;
+        }
+
+        padding: 5px 15px 5px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // text-align: center;
+        // display: table-cell;
+
+        &:nth-child(2),
+        &:nth-child(3),
+        &:nth-child(4),
+        &:nth-child(8),
+        &:nth-child(9) {
+          color: var(--gray);
+        }
+
+        &:first-child {
+          border-radius: 10px 0px 0px 10px;
+        }
+
+        &:last-child {
+          border-radius: 0px 10px 10px 0px;
+        }
+
+        img {
+          width: 60px;
+          height: 60px;
+        }
+      }
+    }
+
+    @include breakpoint(t) {
+      display: contents;
+    }
+  }
+}
+
+.mobileTable {
+  display: block;
+  overflow: auto;
+  height: 400px;
+  scrollbar-color: #e0e0e0;
+  scrollbar-width: thin;
+  
+  @include breakpoint(t) {
+    display: none;
+  }
+}
+
+.mobileTableElement {
+  background-color: var(--white);
+  height: 80px;
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 10px;
+  display: block;
+  img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.mobileTableFirst {
+  display: grid;
+  grid-template-columns: fit-content(100px) 1fr 1fr;
+  width: 100%;
+  align-items: center;
+  justify-items: center;
+
+  &:nth-child(2) {
+    justify-items: start;
+  }
+  p {
+    margin: 0;
+    font-size: 14px;
+  }
+}
+
+.mobileTableSecond {
+  text-align: center;
+  width: 100%;
+  p {
+    padding: 10px;
+    margin: 0;
+  }
+}

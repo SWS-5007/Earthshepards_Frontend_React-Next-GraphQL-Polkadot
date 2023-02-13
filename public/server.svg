@@ -1,0 +1,11 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" width="60" height="60">
+	<title>server-svgrepo-com-svg</title>
+	<defs>
+		<image  width="60" height="60" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAMAAAANIilAAAAAAXNSR0IB2cksfwAAAEVQTFRFAAAAJm/VJm/VJm/VJm/VJm/VJm/VJm/VJm/VJm/VJm/VJm/VJm/VJm/VJm/VJm/VJm/VJm/VJm/VJm/VJm/VJm/VJm/U8LQ3YgAAABd0Uk5TABBff1Dv/0AwsMCAr89PDyAfv/CgYIBRkd1wAAAAy0lEQVR4nO2X2w6DIBBEBy14Q6Wi/f9PrURtYtCKQ1+aMAlvHhYWPAkARJYTyQTmPKSiIgug5FBHl6hoWFXgWaV+A8u6qe+2boO167zQFNxiSet/obU/9nC3wt3B9PDHHu5X2DCVN/h5tLVT/HrZXxZ+3bDrykq7hffcUc2XZMgH9pJQgeVZi5GHR5iGjkFUDGO/JSZuz6Q7XWTSUNJQaOWkocAkDd1M0lDSUHDlv9NQFBz1QOGfRrYECtKftnBnK6aP0l7h9pvm3/ANLsJTujX4EjIAAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+	</style>
+	<g id="Layer">
+		<use id="Layer 1" href="#img1" x="0" y="0"/>
+	</g>
+</svg>
