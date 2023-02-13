@@ -1,0 +1,16 @@
+@use "sass:math";
+@use "breakpoints" as *;
+
+@function get-breakpoint($breakpoint) {
+	@if type-of($breakpoint) != "number" {
+		@return map-get($map: $breakpoints, $key: $breakpoint);
+	}
+
+	@return $breakpoint;
+}
+
+@mixin breakpoint($breakpoint) {
+	@media screen and (min-width: get-breakpoint($breakpoint)) {
+		@content;
+	}
+}

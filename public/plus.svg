@@ -1,0 +1,16 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+	<title>plus-svg</title>
+	<defs>
+		<clipPath clipPathUnits="userSpaceOnUse" id="cp1">
+			<path d="m24 14h-10v10h-4v-10h-10v-4h10v-10h4v10h10z"/>
+		</clipPath>
+		<image  width="24" height="24" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAAXNSR0IB2cksfwAAAG9QTFRFAAAAF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNF2cNzMEwMwAAACV0Uk5TAMP/m92yJ/bNI0ir/O29wLq7vJbF8f3+2vhX6mn0zHiN9aItCTlqpFoAAABZSURBVHicY2AAAkYmZMDMAAcsKBKscHE2dhQJDqgwJxc3D4oELx+/gKAQg7CIqBgTFsAgjk0UJIFDfFSCKhISkjgkpKSxiosxyGCLKVk5eQYFTGFFJWUVBgDRxgbEQeAvUwAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+		.s0 { fill: #000000 } 
+	</style>
+	<g clip-path="url(#cp1)">
+		<path id="Layer" class="s0" d="m24 14h-10v10h-4v-10h-10v-4h10v-10h4v10h10z"/>
+		<use id="Layer 1" href="#img1" x="0" y="0"/>
+	</g>
+</svg>

@@ -1,0 +1,45 @@
+@use '../../../styles/breakpoints' as *;
+@use '../../../styles/mixins' as *;
+
+.box {
+  background-color: var(--white);
+  border-radius: 20px;
+  padding: 20px;
+  color: var(--midnight-blue);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 120px;
+  width: 100%;
+  @include breakpoint(ts) {
+    width: 200px;
+  }
+  h2 {
+    font-size: 16px;
+    font-weight: 600;
+    font-family: var(--worksans-bold);
+  }
+
+  p {
+    margin: 0;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 3px;
+    border-radius: 1px;
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--tropical-blue);
+  }
+}
+
+.boxImage {
+  width: 18px;
+  margin-bottom: 20px;
+}

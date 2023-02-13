@@ -1,0 +1,62 @@
+.backgroundModal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+}
+
+.modalSelect {
+    position: absolute;
+    background-color: var(--white);
+    // width: 30%;
+    height: auto;
+    padding: 20px;
+    top: 40px;
+    left: 70%;
+    border-radius: 10px;
+    z-index: 999;
+
+    div {
+        display: flex;
+        gap: 80px;
+        margin-top: 10px;
+        align-items: center;
+        border-radius: 5px;
+        padding: 10px;
+        transition: all 400ms ease-in-out;
+
+        &:hover {
+            background-color: var(--forest-green);
+            color: white;
+        }
+
+        p {
+            margin: 0;
+        }
+    }
+
+}
+
+.connectPolkadotMnemonic {
+    text-align: center;
+    h3 {
+        font-size: 30px;
+        color: var(--japanese-laurel);
+    }
+}
+
+.connectOptions {
+   display: grid;
+   grid-template-columns: 1fr;
+   
+  
+    p {
+        width: 100px;
+        padding: 5px;
+        border-radius: 5px;
+        color: var(--white);
+        background-color: var(--japanese-laurel);
+    }
+}
