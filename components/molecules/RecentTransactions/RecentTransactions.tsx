@@ -19,7 +19,7 @@ export interface Props {
 
 const RecentTransactions = () => {
   const TableData = {
-    TableHeader: ['HASH', 'BLOCK', 'AGE', 'TYPE', 'FROM', 'TO', 'NAME', 'Amount', 'TIMESTAMP'],
+    TableHeader: ['HASH', 'BLOCK', 'AGE', 'TYPE', 'FROM', 'TO', 'NAME', 'VALUE', 'TIMESTAMP'],
     Data: [
       {
         HASH: '2316cgf6a',
