@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.8",
     "@polkadot/api": "9.10.2",
     "@polkadot/extension-dapp": "^0.44.6",
     "@types/node": "18.11.11",
@@ -16,10 +17,15 @@
     "@types/react-dom": "18.0.9",
     "eslint": "8.29.0",
     "eslint-config-next": "^13.0.6",
+    "graphql": "^16.6.0",
+    "graphql-subscriptions": "^2.0.0",
+    "graphql-ws": "^5.11.3",
     "next": "^13.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-use-websocket": "^4.3.1",
     "sass": "^1.56.1",
-    "typescript": "4.9.3"
+    "typescript": "4.9.3",
+    "ws": "^8.12.1"
   }
 }
