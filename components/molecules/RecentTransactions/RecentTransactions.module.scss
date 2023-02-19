@@ -117,6 +117,11 @@
   }
 }
 
+.NoTransactionBody{
+  border-spacing: 0 15px;
+  font-size: 25px;
+}
+
 .content{
 
   overflow-x: scroll;
@@ -144,10 +149,14 @@
 }
 
 .RecentTransactionsBody {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 10px;
   min-width: 777px;
   height: 400px;
   overflow: visible;
+
   @include breakpoint(tl){
     overflow-y: scroll;
   }
