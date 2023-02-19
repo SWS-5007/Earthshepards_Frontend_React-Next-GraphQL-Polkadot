@@ -6,14 +6,14 @@ import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { createClient } from "graphql-ws";
 
 export default function WebSocketDemo() {
-  // const [socketUrl, setSocketUrl] = useState(
-  //   "wss://api.shearscanaaaaaa.com/graphql/"
-  // );
+  const [socketUrl, setSocketUrl] = useState(
+    "wss://api.shearscanaaaaaa.com/graphql/"
+  );
   const [messageHistory, setMessageHistory] = useState([]);
 
-  // const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl, {
-  //   onOpen: () => console.log("opened"),
-  // });
+  const { sendMessage, lastMessage, readyState } = useWebSocket(socketUrl, {
+    onOpen: () => console.log("opened"),
+  });
 
   useEffect(() => {
     if (lastMessage !== null) {

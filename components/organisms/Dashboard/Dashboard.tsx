@@ -13,11 +13,11 @@ const Dashboard = () => {
   return (
     <section style={{ width: '100%', display: 'flex', marginTop: 0 }}>
       <div className={styles.main}>
-        <WebSocketDemo />
-        {/* <SearchBar />
-        <ShearBlockChain />
-        <ShearToken />
-        <RecentTransactions /> */}
+        {/* <WebSocketDemo /> */}
+        {/* <SearchBar /> */}
+        {/* <ShearBlockChain /> */}
+        {/* <ShearToken /> */}
+        <RecentTransactions /> 
       </div>
       <RightIcon />
       <RightBlock /> 
