@@ -10,38 +10,6 @@ import {
   createHttpLink,
   gql,
 } from "@apollo/client";
-// import { setContext } from "@apollo/client/link/context";
-
-// const httpLink = createHttpLink({
-//   uri: "https://api.shearscan.com/graphql/",
-// });
-
-// const authLink = new ApolloLink((operation, forward) => {
-//   const token = localStorage.getItem('auth_token');
-
-//   operation.setContext({
-//     headers: {
-//       authorization: token ? `Bearer ${token}` : ''
-//     }
-//   });
-
-//   return forward(operation);
-// });
-
-// const authLink = setContext((_, { headers }) => {
-//   return {
-//     headers: {
-//       ...headers,
-//       authorization: "",
-//       // authorization: token ? `Bearer ${token}` : "",
-//     },
-//   };
-// });
-
-// const client = new ApolloClient({
-//   link: authLink.concat(httpLink),
-//   cache: new InMemoryCache(),
-// });
 
 const client = new ApolloClient({
   uri: "https://api.shearscan.com/graphql/",
@@ -186,23 +154,6 @@ const RecentTransactions = () => {
                     </div>
                   </div>
                 ))
-
-                // TableData.Data.map((element) => (
-                //   <div
-                //     className={styles.RecentTransaction}
-                //     key={TableData.Data.indexOf(element)}
-                //   >
-                //     <div className={styles.Hash}>{element.HASH}</div>
-                //     <div className={styles.Block}>{element.BLOCK}</div>
-                //     <div className={styles.Age}>{element.AGE}</div>
-                //     <div className={styles.Type}>{element.TYPE}</div>
-                //     <div className={styles.From}>{element.FROM}</div>
-                //     <div className={styles.To}>{element.TO}</div>
-                //     <div className={styles.Name}>{element.NAME}</div>
-                //     <div className={styles.Value}>{element.VALUE}</div>
-                //     <div className={styles.Timestamp}>{element.TIMESTAMP}</div>
-                //   </div>
-                // ))
               )}
             </div>
           </div>
