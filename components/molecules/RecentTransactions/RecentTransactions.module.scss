@@ -8,11 +8,17 @@
   margin: 10px 0px 0px 0px;
 }
 
+.transactionTable {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  font-size: 15px;
+}
+
 .RecentTransactions {
   table {
     border-collapse: separate;
     width: 100%;
-    table-layout: fixed;
     border-spacing: 0 15px;
 
     thead {
@@ -24,7 +30,6 @@
 
         th {
           font-family: var(--worksans-bold);
-
         }
 
         @include breakpoint(ds) {
@@ -150,6 +155,7 @@
 
 .RecentTransactionsBody {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: 10px;
