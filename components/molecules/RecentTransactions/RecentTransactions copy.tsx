@@ -141,12 +141,47 @@ const RecentTransactions = () => {
 
   console.log("$$$$$$$", allTransaction);
   return (
-    <section className={styles.RecentTransactions}>
+    <section>
       <Container>
         <Grid>
           <p className={styles.title}>Recent transactions</p>
-          <div className={styles.content}>
-            <div className={styles.RecentTransactionsHeader}>
+          {/* <div className={styles.content}> */}
+          <table className={styles.transactionTable}>
+            <thead>
+              <tr>
+                <td>HASH</td>
+                <td>BLOCK</td>
+                <td>AGE</td>
+                <td>FROM</td>
+                <td>TO</td>
+                <td>NAME</td>
+                <td>VALUE</td>
+                <td>TIMESTAMP</td>
+              </tr>
+            </thead>
+            <tbody>
+              {allTransaction.length == 0 ? (
+                <tr className={styles.NoTransactionBody}>
+                  <td colSpan={8}>No transaction yet</td>
+                </tr>
+              ) : (
+                allTransaction.map((element: any) => (
+                  <tr key={allTransaction.indexOf(element)}>
+                    <td>{element.hash}</td>
+                    <td>{element.blockHash}</td>
+                    <td>{element.blockNumber}</td>
+                    <td>{eval("(" + element.callArguments + ")")[0].value}</td>
+                    <td>{eval("(" + element.callArguments + ")")[0].value}</td>
+                    <td>SHE</td>
+                    <td>{eval("(" + element.callArguments + ")")[1].value}</td>
+                    <td>{element.blockDatetime}</td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+
+          {/* <div className={styles.RecentTransactionsHeader}>
               <div>HASH</div>
               <div>BLOCK</div>
               <div>AGE</div>
@@ -168,14 +203,14 @@ const RecentTransactions = () => {
                     className={styles.RecentTransaction}
                     key={allTransaction.indexOf(element)}
                   >
-                    <div className={styles.Hash}>{(element.hash).slice(55)}</div>
-                    <div className={styles.Block}>{(element.blockHash).slice(55)}</div>
+                    <div className={styles.Hash}>{element.hash}</div>
+                    <div className={styles.Block}>{element.blockHash}</div>
                     <div className={styles.Age}>{element.blockNumber}</div>
                     <div className={styles.From}>
-                      {(eval("(" + element.callArguments + ")")[0].value).slice(55)}
+                      {eval("(" + element.callArguments + ")")[0].value}
                     </div>
                     <div className={styles.From}>
-                      {(eval("(" + element.callArguments + ")")[0].value).slice(55)}
+                      {eval("(" + element.callArguments + ")")[0].value}
                     </div>
                     <div className={styles.Name}>SHE</div>
                     <div className={styles.Value}>
@@ -186,26 +221,10 @@ const RecentTransactions = () => {
                     </div>
                   </div>
                 ))
-
-                // TableData.Data.map((element) => (
-                //   <div
-                //     className={styles.RecentTransaction}
-                //     key={TableData.Data.indexOf(element)}
-                //   >
-                //     <div className={styles.Hash}>{element.HASH}</div>
-                //     <div className={styles.Block}>{element.BLOCK}</div>
-                //     <div className={styles.Age}>{element.AGE}</div>
-                //     <div className={styles.Type}>{element.TYPE}</div>
-                //     <div className={styles.From}>{element.FROM}</div>
-                //     <div className={styles.To}>{element.TO}</div>
-                //     <div className={styles.Name}>{element.NAME}</div>
-                //     <div className={styles.Value}>{element.VALUE}</div>
-                //     <div className={styles.Timestamp}>{element.TIMESTAMP}</div>
-                //   </div>
-                // ))
               )}
-            </div>
-          </div>
+            </div> */}
+
+          {/* </div> */}
         </Grid>
       </Container>
     </section>

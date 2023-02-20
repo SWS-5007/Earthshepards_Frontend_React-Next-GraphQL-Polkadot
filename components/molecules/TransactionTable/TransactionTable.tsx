@@ -22,36 +22,6 @@ const TransactionsTable = () => {
         TO: '345walletaddressLOREM45whd',
         TIME: '2022/09/26   19:07',
       },
-      {
-        AMOUNT: '- 345.34 SHE',
-        TO: '345walletaddressLOREM45whd',
-        TIME: '2022/09/26   19:07',
-      },
-      {
-        AMOUNT: '- 345.34 SHE',
-        TO: '345walletaddressLOREM45whd',
-        TIME: '2022/09/26   19:07',
-      },
-      {
-        AMOUNT: '- 345.34 SHE',
-        TO: '345walletaddressLOREM45whd',
-        TIME: '2022/09/26   19:07',
-      },
-      {
-        AMOUNT: '- 345.34 SHE',
-        TO: '345walletaddressLOREM45whd',
-        TIME: '2022/09/26   19:07',
-      },
-      {
-        AMOUNT: '- 345.34 SHE',
-        TO: '345walletaddressLOREM45whd',
-        TIME: '2022/09/26   19:07',
-      },
-      {
-        AMOUNT: '- 345.34 SHE',
-        TO: '345walletaddressLOREM45whd',
-        TIME: '2022/09/26   19:07',
-      },
     ],
   }
 

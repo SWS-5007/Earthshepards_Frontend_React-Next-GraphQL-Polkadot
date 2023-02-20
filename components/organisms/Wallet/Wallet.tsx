@@ -40,6 +40,7 @@ const Wallet = () => {
     setAccounts(account)
     setActualAccount(account[0])
     console.log('Account: ', account)
+    console.log('Account_Address: ', account[0].address)
   }
 
   const sendTransfer = async (toAccount: string, ammount: number) => {
