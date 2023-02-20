@@ -7,16 +7,14 @@ import RecentTransactions from '../../molecules/RecentTransactions/RecentTransac
 import RightBlock from '../../molecules/RightBlock/RightBlock'
 import RightIcon from '../../atoms/RightIcon/RightIcon'
 import LeftMenu from '../LeftMenu/LeftMenu'
-import WebSocketDemo from './WebSocketDemo.js'
 
 const Dashboard = () => {
   return (
     <section style={{ width: '100%', display: 'flex', marginTop: 0 }}>
       <div className={styles.main}>
-        {/* <WebSocketDemo /> */}
-        {/* <SearchBar /> */}
-        {/* <ShearBlockChain /> */}
-        {/* <ShearToken /> */}
+        <SearchBar />
+        <ShearBlockChain />
+        <ShearToken />
         <RecentTransactions /> 
       </div>
       <RightIcon />
