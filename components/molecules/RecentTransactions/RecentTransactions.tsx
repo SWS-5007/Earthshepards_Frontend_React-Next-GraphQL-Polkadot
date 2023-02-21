@@ -5,9 +5,7 @@ import { useState, useEffect } from "react";
 
 import {
   ApolloClient,
-  ApolloLink,
   InMemoryCache,
-  createHttpLink,
   gql,
 } from "@apollo/client";
 
