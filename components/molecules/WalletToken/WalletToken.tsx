@@ -1,14 +1,15 @@
-'use Client'
-import Image from 'next/image'
-import styles from './WalletToken.module.scss'
-import DownArrowImage from '../../../public/down-arrow.png'
-import UpArrowImage from '../../../public/up-arrow.png'
+"use Client";
+import Image from "next/image";
+import styles from "./WalletToken.module.scss";
+import DownArrowImage from "../../../public/down-arrow.png";
+import UpArrowImage from "../../../public/up-arrow.png";
 
 export interface Props {
-  setHandlerReceiveModal: any
-  setHandlerSendModal: any
-  actualAccount: any
-  setCloseTransactionStatusModal: any
+  setHandlerReceiveModal: any;
+  setHandlerSendModal: any;
+  actualAccount: any;
+  setCloseTransactionStatusModal: any;
+  freeBalanceValue: number;
 }
 
 const WalletToken = ({
@@ -16,19 +17,20 @@ const WalletToken = ({
   setHandlerSendModal,
   actualAccount,
   setCloseTransactionStatusModal,
+  freeBalanceValue,
 }: Props) => {
   return (
     <div className={styles.shearToken}>
       <h1 className={styles.title}>Shear Token</h1>
       <div className={styles.values}>
-        <h2>12445 SHE</h2>
+        <h2>{freeBalanceValue} SHE</h2>
         <h2 className={styles.usd}>123.23 USD</h2>
       </div>
       <div className={styles.buttons}>
         <div
           className={styles.receive}
           onClick={() => {
-            setHandlerReceiveModal(true)
+            setHandlerReceiveModal(true);
           }}
         >
           <Image src={DownArrowImage} alt="down arrow"></Image>
@@ -38,10 +40,10 @@ const WalletToken = ({
         <div
           className={styles.send}
           onClick={() => {
-            if (actualAccount && actualAccount.address !== '') {
-              setHandlerSendModal(true)
+            if (actualAccount && actualAccount.address !== "") {
+              setHandlerSendModal(true);
             } else {
-              setCloseTransactionStatusModal(true)
+              setCloseTransactionStatusModal(true);
             }
           }}
         >
@@ -50,6 +52,6 @@ const WalletToken = ({
         </div>
       </div>
     </div>
-  )
-}
-export default WalletToken
+  );
+};
+export default WalletToken;
