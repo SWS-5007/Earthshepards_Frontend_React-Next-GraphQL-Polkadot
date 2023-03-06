@@ -30,6 +30,16 @@ interface BalanceType {
   reserved?: string;
 }
 
+interface localStorageWalletType {
+  address?: string;
+  meta?: {
+    genesisHash?: string;
+    name?: string;
+    source?: string;
+  }
+  type?: string;
+}
+
 const Wallet = () => {
   const [accounts, setAccounts] = useState<InjectedAccountWithMeta[]>([]);
   const [hasPolkExtension, setHasPolkExtension] = useState<boolean>(true);
@@ -51,39 +61,30 @@ const Wallet = () => {
   const [freeBalance, setBalance] = useState<BalanceType>({});
   const [freeBalanceValue, setBalanceValue] = useState<number>(0);
 
-  const extensionSetup = async () => {
-    console.log("###########!!!!!!!!");
-    const { web3Accounts, web3Enable, web3FromAddress } = await import(
-      "@polkadot/extension-dapp"
-    );
-    const extensions = await web3Enable("Polk4NET");
-    if (extensions.length === 0) {
-      setHasPolkExtension(false);
-      return;
-    }
-    const account = await web3Accounts();
-    if (Number(account.length) > 1) {
-      setHasMultipleAccounts(true);
-    } else if (Number(account.length) === 0) {
-      setHasNoAccount(true);
-    }
-    setAccounts(account);
-    setActualAccount(account[0]);
-    console.log("Account: ", account);
+  useEffect(() => {
+    const localStorage_Wallet = JSON.parse(localStorage?.getItem('wallet_account') || "{}")
+    const wallet_address: string = localStorage_Wallet[0].address;
+    if (wallet_address) {
+      setActualAccount(localStorage_Wallet[0]);
 
+      getBalance(wallet_address);
+    }
+  }, []);
+
+  const getBalance = async (wallet_address: string) => {
     //Get Balance and Nonce of Wallet
     const api = await ApiPromise.create({ provider: wsProvider });
 
-    const walletAddress = account[0].address;
+    // const walletAddress = account[0].address;
 
-    // const ADDR ="0xf633d22530aa32866b47b7df75f52113f360eb3760b86e0cd7bcf80e670c4960";
+    const walletAddress = "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY";
 
     const { nonce, data: balance } = await api.query.system.account(
       walletAddress
     );
 
     console.log(
-      "!!!!!!!!!!!",
+      "Wallet_Balance",
       balance.free.toString(),
       balance.toJSON(),
       balance.toHuman()
@@ -95,6 +96,64 @@ const Wallet = () => {
       parseFloat(balanceHuman.replace(/,/g, "")) / 1e12;
 
     setBalanceValue(Math.floor(floatBalance));
+  }
+
+  const extensionSetup = async () => {
+    const { web3Accounts, web3Enable, web3FromAddress } = await import(
+      "@polkadot/extension-dapp"
+    );
+    const extensions = await web3Enable("Polk4NET");
+    if (extensions.length === 0) {
+      setHasPolkExtension(false);
+      return;
+    }
+
+    const account = await web3Accounts();
+    if (Number(account.length) > 1) {
+      setHasMultipleAccounts(true);
+    } else if (Number(account.length) === 0) {
+      setHasNoAccount(true);
+    }
+    setAccounts(account);
+    setActualAccount(account[0]);
+    console.log("Account: ", account);
+
+    //Saving the accounts on localstorage.
+    if (account) {
+      localStorage.setItem("wallet_account", JSON.stringify(account));
+      // localStorage.setItem("wallet_account_id", JSON.stringify(account[0].address));
+    }
+
+
+
+    // //Get Balance and Nonce of Wallet
+    // const api = await ApiPromise.create({ provider: wsProvider });
+
+    // // const walletAddress = account[0].address;
+
+    const walletAddress = "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY";
+
+    // const { nonce, data: balance } = await api.query.system.account(
+    //   walletAddress
+    // );
+
+    // console.log(
+    //   "!!!!!!!!!!!",
+    //   balance.free.toString(),
+    //   balance.toJSON(),
+    //   balance.toHuman()
+    // );
+
+    // setBalance(balance.toHuman());
+    // let balanceHuman: any = balance.toHuman().free;
+    // let floatBalance: number =
+    //   parseFloat(balanceHuman.replace(/,/g, "")) / 1e12;
+
+    // setBalanceValue(Math.floor(floatBalance));
+
+    // getBalance(account[0].address);
+    getBalance(walletAddress);
+
 
     //Get Transaction History
     const query = `
@@ -136,7 +195,6 @@ const Wallet = () => {
         api.tx.balances
           .transfer(toAccount, ammount)
           .signAndSend(SENDER, { signer: injector.signer }, (status) => {
-            console.log("Transfer status: ", status);
           });
       }
     } catch (error) {

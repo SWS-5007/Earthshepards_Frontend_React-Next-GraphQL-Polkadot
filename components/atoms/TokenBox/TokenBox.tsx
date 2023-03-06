@@ -6,7 +6,7 @@ import ServerImage from './../../../public/server.svg'
 export interface Props {
   imagePath?: string | null
   title: string
-  subtitle: string | null
+  subtitle: number | null
   rate: null | number
 }
 

@@ -9,6 +9,7 @@ import { ApiPromise, WsProvider } from '@polkadot/api'
 
 const ShearBlockChain = () => {
   const [currentBlock, setCurrentBlock] = useState<number | undefined>()
+  const [finalizeBlock, setFinalizedBlock] = useState<number | undefined>()
 
   const setup = async () => {
     const wsProvider = new WsProvider('wss://www.sheartoken.com/')
@@ -17,8 +18,11 @@ const ShearBlockChain = () => {
       setCurrentBlock(lastHeader.number.toNumber())
       // setLastBlockHash(lastHeader.hash.toString());
     })
-  }
 
+    await api.rpc.chain.subscribeFinalizedHeads((finalizedHead) => {
+      setFinalizedBlock(finalizedHead.number.toNumber())
+    })
+  }
 
   useEffect(() => {
     setup()
@@ -41,7 +45,7 @@ const ShearBlockChain = () => {
             ></TextBlock>
 
             <TextBlock
-              title={currentBlock ? currentBlock.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') : currentBlock}
+              title={finalizeBlock ? finalizeBlock.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') : finalizeBlock}
               paragraph="FINALIZED BLOCK"
               type="SecondType"
             ></TextBlock>

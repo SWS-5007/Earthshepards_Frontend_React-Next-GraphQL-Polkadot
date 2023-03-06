@@ -3,11 +3,7 @@ import Grid from "../Grid/Grid";
 import styles from "./RecentTransactions.module.scss";
 import { useState, useEffect } from "react";
 
-import {
-  ApolloClient,
-  InMemoryCache,
-  gql,
-} from "@apollo/client";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 const client = new ApolloClient({
   uri: "https://api.shearscan.com/graphql/",
@@ -101,11 +97,11 @@ const RecentTransactions = () => {
       const callArguments = eval(
         "(" + res.data.getExtrinsics.objects[0].callArguments + ")"
       );
-      console.log("!!!!!!!!!!!", callArguments);
     });
   }, [allTransactionQuery]);
 
-  console.log("$$$$$$$", allTransaction);
+  console.log("RecentTransactions", allTransaction);
+
   return (
     <section className={styles.RecentTransactions}>
       <Container>
@@ -134,18 +130,25 @@ const RecentTransactions = () => {
                     className={styles.RecentTransaction}
                     key={allTransaction.indexOf(element)}
                   >
-                    <div className={styles.Hash}>{(element.hash).slice(55)}</div>
-                    <div className={styles.Block}>{(element.blockHash).slice(55)}</div>
+                    <div className={styles.Hash}>{element.hash.slice(55)}</div>
+                    <div className={styles.Block}>
+                      {element.blockHash.slice(55)}
+                    </div>
                     <div className={styles.Age}>{element.blockNumber}</div>
                     <div className={styles.From}>
-                      {(eval("(" + element.callArguments + ")")[0].value).slice(55)}
+                      {eval("(" + element.callArguments + ")")[0].value.slice(
+                        55
+                      )}
                     </div>
                     <div className={styles.From}>
-                      {(eval("(" + element.callArguments + ")")[0].value).slice(55)}
+                      {eval("(" + element.callArguments + ")")[0].value.slice(
+                        55
+                      )}
                     </div>
                     <div className={styles.Name}>SHE</div>
                     <div className={styles.Value}>
-                      {eval("(" + element.callArguments + ")")[1].value}
+                      {eval("(" + element.callArguments + ")")[1].value &&
+                        eval("(" + element.callArguments + ")")[1].value / 1e12}
                     </div>
                     <div className={styles.Timestamp}>
                       {element.blockDatetime}
