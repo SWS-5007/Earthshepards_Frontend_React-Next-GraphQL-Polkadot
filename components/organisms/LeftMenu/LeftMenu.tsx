@@ -144,14 +144,27 @@ const LeftMenu = () => {
               key={fe.absoluteName}
             >
               <Image src={fe.imagePath} alt="alt-image"></Image>
-              <Link
+              {fe.absoluteName == "Dashboard" || fe.absoluteName == "Wallet" ? <Link
+                href={fe.absoluteLink}
+                style={{ color: `var(--polar)` }}
+              >
+                {fe.absoluteName}
+              </Link> : <Link
                 href={fe.absoluteLink}
                 onClick={() => {
                   // closeMenu()
                 }}
               >
                 {fe.absoluteName}
-              </Link>
+              </Link>}
+              {/* <Link
+                href={fe.absoluteLink}
+                onClick={() => {
+                  // closeMenu()
+                }}
+              >
+                {fe.absoluteName}
+              </Link> */}
             </div>
           ))}
         </div>
@@ -192,19 +205,24 @@ const LeftMenu = () => {
           {fourthElement.map((fe) => (
             <div className={styles.Element} key={fe.absoluteName}>
               <Image src={fe.imagePath} alt="alt-image"></Image>
-              <Link
+              {fe.absoluteName == "Disconnect" ? <Link
+                href={fe.absoluteLink}
+                style={{ color: `var(--polar)` }}
+              >
+                {fe.absoluteName}
+              </Link> : <Link
                 href={fe.absoluteLink}
                 onClick={() => {
                   // closeMenu()
                 }}
               >
                 {fe.absoluteName}
-              </Link>
+              </Link>}
             </div>
           ))}
         </div>
       </div>
-    </section>
+    </section >
   )
 }
 

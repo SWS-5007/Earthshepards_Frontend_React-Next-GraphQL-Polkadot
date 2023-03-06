@@ -97,7 +97,8 @@ const TransactionsTable = ({ transactions }: Props) => {
                   <div className={styles.mobileTableFirst}>
                     <Image src={TokenImage} alt="Token Image"></Image>
                     <p>
-                      {eval("(" + mobileElement.callArguments + ")")[1].value}
+                      {eval("(" + mobileElement.callArguments + ")")[1].value /
+                        1e12}
                     </p>
 
                     <p>{mobileElement.blockDatetime}</p>

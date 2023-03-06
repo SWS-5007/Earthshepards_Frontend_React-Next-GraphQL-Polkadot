@@ -15,10 +15,10 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  justify-content: center;
+  // justify-content: center;
 
   @include breakpoint(dl) {
-    justify-content: space-between;
+    // justify-content: space-between;
     gap: 20px;
   }
 }

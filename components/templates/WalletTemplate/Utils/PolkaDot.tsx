@@ -18,7 +18,9 @@ export const addAccount = async (setAccount: any, setMnemonic: any) => {
 
   // create an sr25519 pair from the mnemonic (keyring defaults)
   const sp = keyring.createFromUri(mnemonic, { name: 'Create' })
+  console.log('sp_accountId', sp.address)
 
+  localStorage.setItem("wallet_account_id", JSON.stringify(sp.address));
   setAccount(sp.address)
   setMnemonic(mnemonic)
 }
