@@ -52,8 +52,8 @@ const ShearToken = () => {
   }
 
   useEffect(() => {
-    const localStorage_Wallet = JSON.parse(localStorage?.getItem('wallet_account') || "{}")
-    const wallet_address = localStorage_Wallet[0].address;
+    // const localStorage_Wallet = JSON.parse(localStorage?.getItem('wallet_account') || "{}")
+    // const wallet_address = localStorage_Wallet[0].address;
 
     const fetchData = async () => {
       const api = await ApiPromise.create({ provider: wsProvider });

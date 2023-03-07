@@ -94,9 +94,9 @@ const RecentTransactions = () => {
   useEffect(() => {
     allTransactionQuery.then((res) => {
       setAllTransactionDatas(res.data.getExtrinsics.objects);
-      const callArguments = eval(
-        "(" + res.data.getExtrinsics.objects[0].callArguments + ")"
-      );
+      // const callArguments = eval(
+      //   "(" + res.data.getExtrinsics.objects[0].callArguments + ")"
+      // );
     });
   }, [allTransactionQuery]);
 

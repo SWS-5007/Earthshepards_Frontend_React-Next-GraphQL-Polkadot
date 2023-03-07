@@ -34,7 +34,7 @@ const WalletMenu = ({
   return (
     <>
       <div className={styles.walletMenu}>
-        <div
+        {/* <div
           className={styles.createWallet}
           onClick={() => {
             addAccount(setAccount, setMnemonic)
@@ -43,11 +43,11 @@ const WalletMenu = ({
         >
           <Image src={ShearWalletIcon} alt={'shear wallet'}></Image>
           <h2>Create Wallet</h2>
-        </div>
+        </div> */}
         {hasPolkExtension && actualAccount && hasMultipleAccounts === false ? (
           // <h2>{actualAccount.meta.name ? actualAccount.meta.name : actualAccount.address.replace(actualAccount.address.substring(6,42), "...")}</h2>
           <div className={styles.connectWallet}>
-            <h2>{actualAccount.address.replace(actualAccount.address.substring(6, 42), '...')}</h2>
+            <h2 onClick={() => navigator.clipboard.writeText(actualAccount.address)}>{actualAccount.address.replace(actualAccount.address.substring(6, 42), '...')}</h2>
           </div>
         ) : hasPolkExtension && actualAccount && hasMultipleAccounts === true ? (
           <div className={styles.connectWallet}>

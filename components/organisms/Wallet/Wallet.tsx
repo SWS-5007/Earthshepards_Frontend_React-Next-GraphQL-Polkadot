@@ -60,27 +60,60 @@ const Wallet = () => {
   const [transactions, setTransactionDatas] = useState<any[]>([]);
   const [freeBalance, setBalance] = useState<BalanceType>({});
   const [freeBalanceValue, setBalanceValue] = useState<number>(0);
+  const [connectedWalletAddress, setConnectedWalletAddress] = useState<string>("");
 
   useEffect(() => {
     const localStorage_Wallet = JSON.parse(localStorage?.getItem('wallet_account') || "{}")
-    const wallet_address: string = localStorage_Wallet[0].address;
-    if (wallet_address) {
+    console.log('localStorage_Wallet', localStorage_Wallet)
+    if (localStorage_Wallet && localStorage_Wallet[0]) {
+      const wallet_address: string = localStorage_Wallet[0].address;
       setActualAccount(localStorage_Wallet[0]);
+      setConnectedWalletAddress(wallet_address);
 
       getBalance(wallet_address);
+
+      handleFetchTransaction(wallet_address);
     }
   }, []);
+
+  const handleFetchTransaction = async (wallet_address: string) => {
+    //Get Transaction History
+    const query = `
+      query {
+        getExtrinsics(filters: { 
+          callModule: "Balances", 
+          or: [
+            { callName: "transfer" },
+            { callName: "transfer_keep_alive" },
+            { callName: "transfer_all" },
+          ],
+          multiAddressAccountId: "${wallet_address}"
+        }, pageSize: 10)
+        {
+          objects {
+            blockNumber, extrinsicIdx, hash, callModule, callName, signed, blockHash, blockDatetime, multiAddressAccountId, callArguments
+          }, pageInfo { pageSize, pageNext, pagePrev }
+        }
+      }
+      `;
+    const allTransactionQuery = client.query({
+      query: gql(query),
+    });
+
+    allTransactionQuery.then((res) => {
+      console.log("ConnectedWallet_Transaction_History", res.data.getExtrinsics.objects)
+      setTransactionDatas(res.data.getExtrinsics.objects);
+    });
+  }
 
   const getBalance = async (wallet_address: string) => {
     //Get Balance and Nonce of Wallet
     const api = await ApiPromise.create({ provider: wsProvider });
 
-    // const walletAddress = account[0].address;
-
-    const walletAddress = "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY";
+    // const walletAddress = "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY";
 
     const { nonce, data: balance } = await api.query.system.account(
-      walletAddress
+      wallet_address
     );
 
     console.log(
@@ -131,7 +164,7 @@ const Wallet = () => {
 
     // // const walletAddress = account[0].address;
 
-    const walletAddress = "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY";
+    // const walletAddress = "5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY";
 
     // const { nonce, data: balance } = await api.query.system.account(
     //   walletAddress
@@ -151,36 +184,37 @@ const Wallet = () => {
 
     // setBalanceValue(Math.floor(floatBalance));
 
-    // getBalance(account[0].address);
-    getBalance(walletAddress);
+    getBalance(account[0].address);
+    // getBalance(walletAddress);
 
 
     //Get Transaction History
-    const query = `
-      query {
-        getExtrinsics(filters: { 
-          callModule: "Balances", 
-          or: [
-            { callName: "transfer" },
-            { callName: "transfer_keep_alive" },
-            { callName: "transfer_all" },
-          ],
-          multiAddressAccountId: "${walletAddress}"
-        }, pageSize: 10)
-        {
-          objects {
-            blockNumber, extrinsicIdx, hash, callModule, callName, signed, blockHash, blockDatetime, multiAddressAccountId, callArguments
-          }, pageInfo { pageSize, pageNext, pagePrev }
-        }
-      }
-    `;
-    const allTransactionQuery = client.query({
-      query: gql(query),
-    });
 
-    allTransactionQuery.then((res) => {
-      setTransactionDatas(res.data.getExtrinsics.objects);
-    });
+    // const query = `
+    //   query {
+    //     getExtrinsics(filters: { 
+    //       callModule: "Balances", 
+    //       or: [
+    //         { callName: "transfer" },
+    //         { callName: "transfer_keep_alive" },
+    //         { callName: "transfer_all" },
+    //       ],
+    //       multiAddressAccountId: "${walletAddress}"
+    //     }, pageSize: 10)
+    //     {
+    //       objects {
+    //         blockNumber, extrinsicIdx, hash, callModule, callName, signed, blockHash, blockDatetime, multiAddressAccountId, callArguments
+    //       }, pageInfo { pageSize, pageNext, pagePrev }
+    //     }
+    //   }
+    // `;
+    // const allTransactionQuery = client.query({
+    //   query: gql(query),
+    // });
+
+    // allTransactionQuery.then((res) => {
+    //   setTransactionDatas(res.data.getExtrinsics.objects);
+    // });
   };
 
   const sendTransfer = async (toAccount: string, ammount: number) => {
@@ -188,14 +222,24 @@ const Wallet = () => {
       const { web3Accounts, web3Enable, web3FromAddress } = await import(
         "@polkadot/extension-dapp"
       );
+      const extensions = await web3Enable("Polk4NET");
+
       const api = await ApiPromise.create({ provider: wsProvider });
+      console.log('@@@@SendedTokenAmount', actualAccount?.address, actualAccount, toAccount, ammount)
+
       if (actualAccount?.address !== "" && actualAccount) {
         const SENDER = actualAccount.address;
+        console.log('SENDER', SENDER, typeof SENDER)
         const injector = await web3FromAddress(SENDER);
+        console.log('sendTransfer_injector', injector)
+
         api.tx.balances
           .transfer(toAccount, ammount)
           .signAndSend(SENDER, { signer: injector.signer }, (status) => {
+            console.log('SendToken_Status', status)
           });
+
+        handleFetchTransaction(SENDER);
       }
     } catch (error) {
       console.log(error);
