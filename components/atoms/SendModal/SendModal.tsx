@@ -13,23 +13,23 @@ const SendModal = ({ setHandlerSendModal, sendTransfer }: Props) => {
   const [sendAccountInput, setSendAccountInput] = useState<string>('')
   const [sendAmountInput, setSendAmountInput] = useState<number>(-10)
 
-  const accountInput = (e : any) => {
+  const accountInput = (e: any) => {
     const lettersAndNumbers = /^[a-zA-Z0-9]+$/
     if (lettersAndNumbers.test(e.target.value)) {
-      setSendAccountInput(e.target.value)  
-    } else if(Number(e.target.value.length) === 0){
+      setSendAccountInput(e.target.value)
+    } else if (Number(e.target.value.length) === 0) {
       setSendAccountInput('')
-    } 
-  }
- 
-
-
-  const numberInput = (e : any) => {
-    if (Number(e.target.value) > Number(e.target.max)) {
-      e.target.value = e.target.max
-    } else if (Number(e.target.value) < Number(e.target.min)) {
-      e.target.value = e.target.min
     }
+  }
+
+
+
+  const numberInput = (e: any) => {
+    // if (Number(e.target.value) > Number(e.target.max)) {
+    //   e.target.value = e.target.max
+    // } else if (Number(e.target.value) < Number(e.target.min)) {
+    //   e.target.value = e.target.min
+    // }
     setSendAmountInput(e.target.value)
   }
 
@@ -48,7 +48,8 @@ const SendModal = ({ setHandlerSendModal, sendTransfer }: Props) => {
         <h3 className={styles.copyText}>Please write the account ID and the amount you want to send ! </h3>
         <form>
           <input type="text" placeholder="Account ID" onChange={accountInput} value={sendAccountInput} />
-          <input type="number" min="0.00000001" max="100" onChange={numberInput} placeholder="Amount" />
+          <input type="number" onChange={numberInput} placeholder="Amount" />
+          {/* <input type="number" min="0.00000001" max="100" onChange={numberInput} placeholder="Amount" /> */}
         </form>
         <div
           className={styles.closeButtonContainer}
