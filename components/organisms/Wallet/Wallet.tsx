@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import "@polkadot/api-augment";
 import { ApiPromise, WsProvider } from "@polkadot/api";
+import { decodeAddress, encodeAddress } from "@polkadot/keyring";
+import { u8aToHex } from "@polkadot/util";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import type { InjectedAccountWithMeta } from "@polkadot/extension-inject/types";
 // import { web3Accounts, web3Enable, web3FromAddress } from '@polkadot/extension-dapp'
@@ -77,6 +79,8 @@ const Wallet = () => {
   }, []);
 
   const handleFetchTransaction = async (wallet_address: string) => {
+    const decodedAddress = u8aToHex(decodeAddress(wallet_address));
+    console.log("DecodedAddress", decodedAddress)
     //Get Transaction History
     const query = `
       query {
@@ -87,7 +91,7 @@ const Wallet = () => {
             { callName: "transfer_keep_alive" },
             { callName: "transfer_all" },
           ],
-          multiAddressAccountId: "${wallet_address}"
+          multiAddressAccountId: "${decodedAddress}"
         }, pageSize: 10)
         {
           objects {
@@ -96,6 +100,7 @@ const Wallet = () => {
         }
       }
       `;
+    console.log('FetchWalletTransactionQuery', query)
     const allTransactionQuery = client.query({
       query: gql(query),
     });
@@ -185,6 +190,7 @@ const Wallet = () => {
     // setBalanceValue(Math.floor(floatBalance));
 
     getBalance(account[0].address);
+    handleFetchTransaction(account[0].address);
     // getBalance(walletAddress);
 
 

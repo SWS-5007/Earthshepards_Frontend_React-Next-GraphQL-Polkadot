@@ -18,7 +18,7 @@ const Dashboard = () => {
         <RecentTransactions /> 
       </div>
       <RightIcon />
-      <RightBlock /> 
+      {/* <RightBlock />  */}
     </section>
   )
 }

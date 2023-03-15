@@ -24,7 +24,7 @@ const WalletToken = ({
       <h1 className={styles.title}>Shear Token</h1>
       <div className={styles.values}>
         <h2>{freeBalanceValue} SHE</h2>
-        <h2 className={styles.usd}>123.23 USD</h2>
+        {/* <h2 className={styles.usd}>123.23 USD</h2> */}
       </div>
       <div className={styles.buttons}>
         <div

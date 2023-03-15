@@ -22,9 +22,9 @@ const TransactionsTableHeads = () => {
         <div className={`${styles.transactions} ${enabledTransactions ? styles.tableActive : ''}`} onClick={menuDisabling}>
           <h2>TRANSACTIONS</h2>
         </div>
-        <div className={`${styles.priceChart} ${enabledPrice ? styles.tableActive : ''}`} onClick={menuDisabling}>
+        {/* <div className={`${styles.priceChart} ${enabledPrice ? styles.tableActive : ''}`} onClick={menuDisabling}>
           <h2>PRICE CHART</h2>
-        </div>
+        </div> */}
       </div>
       <div className={styles.table}></div>
     </div>

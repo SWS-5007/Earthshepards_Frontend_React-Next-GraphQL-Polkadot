@@ -9,7 +9,7 @@ export interface Props {
 
 const ReceiveModal = ({ setHandlerReceiveModal, accountId }: any) => {
   const localStorage_Wallet = JSON.parse(localStorage?.getItem('wallet_account') || "{}")
-  const connectedWalletAddress = localStorage_Wallet[0].address;
+  const connectedWalletAddress = localStorage_Wallet[0] ? localStorage_Wallet[0].address : "";
   console.log('ReceiveModal_connectedWalletAddress', connectedWalletAddress)
 
   return (
